@@ -32,8 +32,7 @@ class _HomePageState extends State<HomePage> {
   List<dynamic> _notifications = [];
 
   _checkIfSetupDone() async {
-    flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     if (await storage.read(key: "setup") != "done") {
       await _showInfoDialogBox();
       bool result = await _getNotificationPermission();
@@ -85,8 +84,10 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         _notifications = result;
       });
-      String lastnotification = _notifications[0]['subject']['title'];
-      storage.write(key: 'lastnotification', value: lastnotification);
+      if (_notifications.isNotEmpty) {
+        String lastnotification = _notifications[0]['subject']['title'];
+        storage.write(key: 'lastnotification', value: lastnotification);
+      }
     } catch (_) {
       _showError();
     }
@@ -104,7 +105,10 @@ class _HomePageState extends State<HomePage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => SettingsPage(storage: storage, github: github,)));
+            builder: (context) => SettingsPage(
+                  storage: storage,
+                  github: github,
+                )));
   }
 
   @override
@@ -126,11 +130,11 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.white,
         title: const Text('GitAlerts'),
         actions: [
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () => _goToSettingsPage(),
-            ),
-          ],
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => _goToSettingsPage(),
+          ),
+        ],
       ),
       backgroundColor: Colors.grey,
       body: RefreshIndicator(
@@ -149,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                   final notification = _notifications[index];
                   final repoFullName = notification['repository']['full_name'];
                   final notificationText = notification['subject']['title'];
-      
+
                   return Card(
                     margin: const EdgeInsets.all(6.0),
                     child: Column(
@@ -159,13 +163,19 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.all(9.0),
                           child: Text(
                             repoFullName,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0,),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(18.0),
-                          child: Text(notificationText,
-                          style: const TextStyle(fontSize: 16.0,),
+                          child: Text(
+                            notificationText,
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                            ),
                           ),
                         ),
                       ],
