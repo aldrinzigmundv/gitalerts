@@ -17,11 +17,8 @@ void callbackDispatcher() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
       title: "GitAlerts",
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const LoadingPage(),
-      },
+      home: LoadingPage(),
     ));
 }
