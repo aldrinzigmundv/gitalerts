@@ -4,7 +4,9 @@
 
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
      alt="Get it on Google Play"
-     height="93">](https://play.google.com/store/apps/details?id=io.github.aldrinzigmundv.gitalerts)
+     height="93">](https://play.google.com/store/apps/details?id=io.github.aldrinzigmundv.gitalerts)[<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png"
+     alt="Get it on amazon appstore"
+     height="65">](https://www.amazon.com/dp/B0CKY6X629/)
 
 Or download the latest ad-free APK version from the [Releases Section](https://github.com/aldrinzigmundv/gitalerts/releases/latest)
 
